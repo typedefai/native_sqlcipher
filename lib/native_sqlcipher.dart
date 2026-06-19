@@ -23,7 +23,14 @@ class SqlcipherLibraryLoader {
     }
 
     if (Platform.isMacOS || Platform.isIOS) {
-      return DynamicLibrary.open('$_libName.framework/$_libName');
+      // When built as an FFI plugin, the symbols are statically linked
+      // into the main executable. Use DynamicLibrary.process() to look
+      // them up instead of trying to load a framework.
+      try {
+        return DynamicLibrary.open('$_libName.framework/$_libName');
+      } catch (_) {
+        return DynamicLibrary.process();
+      }
     }
     if (Platform.isAndroid || Platform.isLinux) {
       return DynamicLibrary.open('lib$_libName.so');
