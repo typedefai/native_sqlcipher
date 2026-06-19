@@ -1,0 +1,7 @@
+module native_sqlcipher {
+    header "sqlite3.h"
+    header "fts5.h"
+    header "fts5_hans.h"
+    header "native_sqlcipher.h"
+    export *
+}

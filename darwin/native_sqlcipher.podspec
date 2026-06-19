@@ -9,14 +9,13 @@ Pod::Spec.new do |s|
 
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
-  s.dependency 'Flutter'
-  s.platform = :ios, '12.0'
 
   s.pod_target_xcconfig = {
-    'DEFINES_MODULE' => 'YES',
-    'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386',
     'HEADER_SEARCH_PATHS' => '"${PODS_TARGET_SRCROOT}/../src/include"'
   }
+
+  s.ios.deployment_target = '12.0'
+  s.osx.deployment_target = '10.13'
   s.swift_version = '5.0'
   s.compiler_flags = [
     '-DSQLITE_HAS_CODEC',
@@ -27,7 +26,6 @@ Pod::Spec.new do |s|
     '-DSQLITE_OMIT_DEPRECATED',
     '-DSQLITE_EXTRA_INIT=sqlcipher_extra_init',
     '-DSQLITE_EXTRA_SHUTDOWN=sqlcipher_extra_shutdown',
-    # Use CommonCrypto instead of OpenSSL on iOS
     '-DSQLCIPHER_CRYPTO_CC',
     '-DSQLITE_EXTRA_AUTOEXT=sqlite3_fts5_hans_init',
     '-DNDEBUG'
