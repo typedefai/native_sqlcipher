@@ -10,15 +10,9 @@ let package = Package(
     products: [
         .library(name: "native-sqlcipher", targets: ["native_sqlcipher"]),
     ],
-    dependencies: [
-        .package(name: "FlutterFramework", path: "../FlutterFramework"),
-    ],
     targets: [
         .target(
             name: "native_sqlcipher",
-            dependencies: [
-                .product(name: "FlutterFramework", package: "FlutterFramework"),
-            ],
             path: "Sources/native_sqlcipher",
             exclude: [
                 "bench.c",
