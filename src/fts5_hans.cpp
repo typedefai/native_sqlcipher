@@ -3,7 +3,9 @@
 #include <mutex>
 #include <string>
 #include <vector>
+#ifndef _WIN32
 #include <unistd.h>
+#endif
 #include <limits.h>
 #include "fts5.h"
 
