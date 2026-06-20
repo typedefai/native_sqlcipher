@@ -3,10 +3,17 @@
 #include <mutex>
 #include <string>
 #include <vector>
-#ifndef _WIN32
+#ifdef _WIN32
+#include <direct.h>
+#include <io.h>
+#define access _access
+#define F_OK 0
+#define getcwd _getcwd
+#define PATH_MAX MAX_PATH
+#else
 #include <unistd.h>
-#endif
 #include <limits.h>
+#endif
 #include "fts5.h"
 
 #include "cppjieba/Jieba.hpp"
